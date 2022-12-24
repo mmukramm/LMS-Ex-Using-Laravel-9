@@ -1,0 +1,200 @@
+:root {
+    /* CSS HEX */
+    --space-cadet: #22223bff;
+    --independence: #4a4e69ff;
+    --heliotrope-gray: #9a8c98ff;
+    --silver-pink: #c9ada7ff;
+    --isabelline: #f2e9e4ff;
+}
+
+/* cms */
+.cmsmenu-active {
+    /* color: var(--space-cadet) !important; */
+    font-weight: 500 !important;
+    background-color: var(--isabelline);
+    border-radius: 12px;
+}
+.cmsmenu-active p,
+.cmsmenu-active i {
+    color: var(--space-cadet) !important;
+}
+
+/* Delete Modal */
+.modaldel_container {
+    display: none;
+    z-index: 1040;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modaldel_form {
+    background-color: var(--isabelline);
+    border-radius: 13px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Modal */
+.modal_container {
+    display: none;
+    z-index: 1040;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_form {
+    background-color: var(--isabelline);
+    border-radius: 13px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.for_inp::placeholder {
+    text-align: center;
+}
+
+/* Main Page Style */
+.head_table {
+    background-color: #212529;
+}
+
+.pri-navbar {
+    background-color: var(--space-cadet);
+    color: var(--isabelline);
+}
+
+.navmenu-active {
+    color: var(--space-cadet) !important;
+    font-weight: 500 !important;
+    background-color: var(--isabelline);
+    border-radius: 12px;
+}
+
+/* Jumbotron */
+.jumtron {
+    background-color: var(--silver-pink);
+    background-position-x: center;
+    background-position-y: center;
+    /* height: 657px; */
+    height: 100vh;
+    background-size: cover;
+    background-image: url("../../dist/img/keming-tan-xMygEKgsnes-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+}
+
+.jumtron .jumtron-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding-block: 40px;
+}
+
+.jumtron #welcome {
+    background-color: var(--isabelline);
+    width: fit-content;
+    border-radius: 20px;
+    font-size: 35px;
+    font-weight: 400;
+}
+
+.jumtron #stuto {
+    /* background-color: var(--isabelline); */
+    border: 1px solid var(--isabelline);
+    border-radius: 10px;
+    color: var(--isabelline);
+}
+
+.jumtron-text {
+    width: 500px;
+    background-color: var(--isabelline);
+    border-radius: 8px;
+}
+
+
+.jumtron-text #jumtron-text-desc {
+    text-align: center;
+}
+
+/* login */
+
+.form_bg {
+    background-color: var(--space-cadet);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    width: 1250px;
+}
+
+.form_content {
+    background-color: var(--isabelline);
+    border-radius: 20px;
+    color: var(--space-cadet);
+    z-index: 1;
+}
+
+.logform_input::placeholder {
+    text-align: center;
+}
+
+.form_content #login_but {
+    background-color: var(--isabelline);
+    font-weight: 500;
+    width: 90px;
+    color: var(--space-cadet);
+    border: 2px solid var(--space-cadet);
+    border-radius: 20px;
+}
+
+.form_content #login_but:hover {
+    background-color: var(--space-cadet);
+    font-weight: 600;
+    color: var(--isabelline);
+    border: 2px solid var(--space-cadet);
+
+}
+
+/* kelas view */
+.add_button {
+    border: 2px solid var(--space-cadet);
+    color: var(--space-cadet);
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.add_button:hover {
+    background-color: var(--space-cadet);
+    color: var(--isabelline);
+}

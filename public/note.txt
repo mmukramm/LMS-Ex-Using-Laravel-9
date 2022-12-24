@@ -1,0 +1,94 @@
+table absen :
+id_absen auto_inc
+id_kelas foreign_key(kelas)
+pertemuan varchar
+id_dosen foreign_key(dosen)
+
+table absen_mahasiswa :
+id_absen_mahasiswa auto_inc
+id_mahasiswa foreign_key(mahasiswa)
+status enum("hadir", "absen") default "absen"
+id_absen foreign_key(absen)
+
+mahasiswa[] = {1, 2, 3, 4, 5}
+mahasiswa_kelas = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+
+========Note===========
+
+Tabel yang dibuat :
+User (Gabungan Role admin, dosen, mahasiswa)
+	=> id, nama, nim/nip, alamat, foto, nomorTelp, role (admin, dosen, mahasiswa)
+
+Matakuliah
+	=> id, nama, status			
+
+Kelas
+	=> id, nama, desc,				, id_matakuliah
+
+Tugas 
+	=> id, nama, description,			, id_kelas
+
+Absen 
+	=> id, pertemuan, 				, id_kelas, id_dosen
+
+
+Tahun Ajaran (berdiri sendiri)
+	=> id, tahun
+
+
+========Relationship
+
+User : 
+	-> hasMany Matakuliah
+	-> hasMany Kelas
+	-> hasMany Tugas
+
+Mata Kuliah :
+	-> hasMany Kelas
+	-> hasMany User
+
+Kelas :
+	-> hasMany User
+	-> hasMany Tugas
+	-> hasMany Absen
+	-> belongTo Mata Kuliah
+
+Tugas :
+	-> belongsTo Kelas
+	-> hasMany Mahasiswa
+
+Absen :
+	-> belongsTo Kelas
+	-> hasMany Mahasiswa
+
+	=======Pivot tabel==========
+
+		matakuliah_user : many to many user
+				=> id matakuliah_user (auto_inc),
+				=> id_user (mahasiswa & dosen) foreign_key (user),
+				=> id_matakuliah foreign_key (mata_kuliahs)
+
+		kelas_user : user many to many kelas
+				=> id_kelas_user (auto_inc), 
+				=> id_user(mahasiswa & dosen) foreign_key (user), 
+				=> id_kelas foreign_key (kelas)
+
+		absen_user : user many to many absen
+				=> id_absen_mahasiswa (auto_inc), 
+				=> id_user(mahasiswa) foreign_key(user), 
+				=> status enum("hadir", "absen") default "absen", 
+				=> id_absen foreign_key(absen)
+
+		tugas_user : user many to many tugas
+				=> id_user_tugas (auto_inc), 
+				=> id_user (mahasiswa) foreign_key(user), 
+				=> status enum("kumpul", "belum kumpul") default "belum kumpul", 
+				=> id_tugas foreign_key(tugas)
+
+================
+1. Buat form login
+2. Controller untuk cms dan frontend beda
+3. Pivot table punya model dan controller 
+4. Unique dua kolom di tabel mahasiswa (mata kuliah dan kelas)
+5. Model dan Controller untuk pivot tabel
