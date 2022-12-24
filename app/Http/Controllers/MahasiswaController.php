@@ -16,7 +16,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $tahunajarans = TahunAjaran::all();
+        $tahunajarans = TahunAjaran::all()->sortBy('tahun_ajaran');
         $mahasiswas = User::where('role', '2')->get();
         return view('admin.mahasiswa', [
             'title' => 'Mahasiswa',
@@ -45,16 +45,23 @@ class MahasiswaController extends Controller
     {
         $data = $request->validate([
             'nama_mahasiswa' => 'required',
-            'angkatan' => 'required',
+            'angkatan' => 'required|integer',
             'telp_mahasiswa' => 'required',
             'alamat_mahasiswa' => 'required',
             'password_mahasiswa' => 'required'
         ]);
-
-        $cmahasiswa = User::where('role', '2')->count();
         $data['password'] = bcrypt($data['password_mahasiswa']);
 
         $tahun_tmp = substr($data['angkatan'], Str::length($data['angkatan']) - 2);
+        // dd($tahun_tmp);
+        $cmahasiswa = User::where([
+                                ['role', '=', '2'],
+                                ['noInduk', 'LIKE', "H071{$tahun_tmp}1%"]
+                            ])->count();
+        // $cmahasiswa = User::where('role', '2')->count();
+        // $cmahasiswa = User::where('role', '2')->count();
+        // dd($cmahasiswa);
+
         $mahasiswa = new User;
         $mahasiswa->name = $data['nama_mahasiswa'];
         $mahasiswa->noInduk = 'H071'. $tahun_tmp . '1' . sprintf("%03d", $cmahasiswa + 1);
@@ -99,7 +106,19 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $data = $request->validate([
+            'nama_dosen' => 'required',
+            'nomorInduk_dosen' => 'required',
+            'telp_dosen' => 'required',
+            'alamat_dosen' => 'required',
+        ]);
+        $dosen = User::find($request->id);
+        $dosen->name = $data['nama_dosen'];
+        $dosen->noInduk = $data['nomorInduk_dosen'];
+        $dosen->alamat = $data['alamat_dosen'];
+        $dosen->notelp = $data['telp_dosen'];
+        $dosen->save();
+        return redirect()->back()->with('success', 'Data Dosen Berhasil Diubah');
     }
 
     /**
@@ -108,8 +127,10 @@ class MahasiswaController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request)
     {
-        //
+        $mahasiswa = User::find($request->id);
+        $mahasiswa->delete();
+        return redirect()->back()->with('success', 'Data Dosen Berhasil Dihapus');
     }
 }

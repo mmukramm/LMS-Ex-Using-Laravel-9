@@ -97,7 +97,6 @@ class DosenController extends Controller
             'telp_dosen' => 'required',
             'alamat_dosen' => 'required',
         ]);
-        // dd($request->id);
         $dosen = User::find($request->id);
         $dosen->name = $data['nama_dosen'];
         $dosen->noInduk = $data['nomorInduk_dosen'];
@@ -117,7 +116,6 @@ class DosenController extends Controller
     {
         $dosen = User::find($request->id);
         $dosen->delete();
-        // dd($dosen);
         return redirect()->back()->with('success', 'Data Dosen Berhasil Dihapus');
     }
 }

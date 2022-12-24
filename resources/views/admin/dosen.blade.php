@@ -20,7 +20,6 @@
                     </div>
                 </div>
                 <hr>
-                {{-- <div class="row" style="background-color: red"> --}}
                 <div class="col">
                     <div class="modal_body d-flex justify-content-center">
                         <form action="/cms/dosen/adddosen" method="POST" id="modal_form">
@@ -68,11 +67,11 @@
                         </form>
                     </div>
                 </div>
-                {{-- </div> --}}
             </div>
         </div>
     </div>
 
+    {{-- modal delete --}}
     <div class="modaldel_container">
         <div class="modaldel_form p-4">
             <div class="container-fluid">
@@ -88,7 +87,6 @@
                         <p class="h4 modal_title">Hapus Data Ini?</p>
                     </div>
                 </div>
-                {{-- <div class="row" style="background-color: red"> --}}
                 <div class="col">
                     <div class="modal_body d-flex justify-content-center">
                         <form action="/cms/dosen/deletedosen" method="POST">

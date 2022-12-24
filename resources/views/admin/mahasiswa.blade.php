@@ -21,7 +21,6 @@
                     </div>
                 </div>
                 <hr>
-                {{-- <div class="row" style="background-color: red"> --}}
                 <div class="col">
                     <div class="modal_body d-flex justify-content-center">
                         <form action="/cms/mahasiswa/addmahasiswa" method="POST" id="modal_form">
@@ -73,11 +72,11 @@
                         </form>
                     </div>
                 </div>
-                {{-- </div> --}}
             </div>
         </div>
     </div>
 
+    {{-- modal delete --}}
     <div class="modaldel_container">
         <div class="modaldel_form p-4">
             <div class="container-fluid">
@@ -93,10 +92,9 @@
                         <p class="h4 modal_title">Hapus Data Ini?</p>
                     </div>
                 </div>
-                {{-- <div class="row" style="background-color: red"> --}}
                 <div class="col">
                     <div class="modal_body d-flex justify-content-center">
-                        <form action="/cms/dosen/deletedosen" method="POST">
+                        <form action="/cms/mahasiswa/deletemahasiswa" method="POST">
                             @csrf
                             <input type="hidden" class="form-control for_inp" id="id_delete" name="id"
                                 placeholder="id" required>
@@ -162,10 +160,16 @@
                                         <td> {{ $mahasiswa->alamat }} </td>
                                         <td> {{ $mahasiswa->notelp }} </td>
                                         <td>
-                                            <button type="button" class="btn btn-warning"><i
-                                                    class="bi bi-pencil-fill"></i></button>
-                                            <button type="button" class="btn btn-danger"><i
-                                                    class="bi bi-trash-fill"></i></button>
+                                            <button type="button" class="btn btn-warning edit"
+                                            onclick="showEditAlert('edit', {{ $loop->iteration - 1 }}, 'mahasiswa')"
+                                            value="{{ $mahasiswa }}">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger delete"
+                                            onclick="showDeleteAlert('delete', {{ $loop->iteration - 1 }})"
+                                            value=" {{ $mahasiswa->id }} ">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr class="table_spacer">

@@ -33,18 +33,28 @@ function openModal(status) {
 
 function showEditAlert(classname, index, status) {
     modal.style.display = "block";
-    let dosen = JSON.parse(document.getElementsByClassName(classname)[index].value);
+    let item = JSON.parse(document.getElementsByClassName(classname)[index].value);
+    console.log(item);
     document.getElementById("password").type = "hidden";
     document.getElementById("password_txt").style.display = "none";
-    // document.getElementById('password_area').setAttribute('type', 'hidden')
     if (status == 'dosen'){
         document.getElementById('modal_form').setAttribute('action', '/cms/dosen/editdosen')
         console.log(document.getElementById('modal_form').getAttribute('action'));
-        document.getElementById("id").value = dosen['id'];
-        document.getElementById("nama").value = dosen['name'];
-        document.getElementById("nomorInduk").value = dosen['noInduk'];
-        document.getElementById("notelp").value = dosen['notelp'];
-        document.getElementById("alamat_dosen").value = dosen['alamat'];
+        document.getElementById("id").value = item['id'];
+        document.getElementById("nama").value = item['name'];
+        document.getElementById("nomorInduk").value = item['noInduk'];
+        document.getElementById("notelp").value = item['notelp'];
+        document.getElementById("alamat_dosen").value = item['alamat'];
+    } else if (status == 'mahasiswa') {
+        document.getElementById('modal_form').setAttribute('action', '/cms/mahasiswa/editmahasiswa')
+        console.log(document.getElementById('modal_form').getAttribute('action'));
+        document.getElementById("id").value = item['id'];
+        document.getElementById("nama").value = item['name'];
+        var noAngkatan = '20' + (item['noInduk'].substring(4, 6));
+        document.getElementById("angkatan").value = noAngkatan;
+        console.log(noAngkatan);
+        document.getElementById("notelp").value = item['notelp'];
+        document.getElementById("alamat").value = item['alamat'];
     }
 }
 
